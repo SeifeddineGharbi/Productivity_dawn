@@ -1,7 +1,7 @@
 "use client"
 
-import { PaywallScreenExample } from "../paywall/PaywallScreenExample"
+import { WebPaywallDemo } from "../paywall/WebPaywallDemo"
 
 export default function SyntheticV0PageForDeployment() {
-  return <PaywallScreenExample />
+  return <WebPaywallDemo />
 }
