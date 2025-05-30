@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useCallback } from "react"
-import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, ActivityIndicator, Linking } from "react-native"
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView, ActivityIndicator } from "../utils/react-native-web"
 import type { SettingsScreenProps, UserProfile, NotificationSettings, SubscriptionInfo } from "./types"
 import { settingsService } from "./settings-service"
 import { ProfileCard } from "./components/ProfileCard"
@@ -17,6 +17,12 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ userId, onLogout
   const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [showProfileEdit, setShowProfileEdit] = useState(false)
+
+  const openURL = (url: string) => {
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank")
+    }
+  }
 
   // Load user data
   const loadUserData = useCallback(async () => {
@@ -83,7 +89,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ userId, onLogout
   // Handle subscription management
   const handleManageSubscription = () => {
     // In a real app, this would open the subscription management page
-    Linking.openURL("https://apps.apple.com/account/subscriptions")
+    openURL("https://apps.apple.com/account/subscriptions")
   }
 
   // Handle subscription upgrade
@@ -100,19 +106,19 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ userId, onLogout
 
   // Handle support links
   const handleRateApp = () => {
-    Linking.openURL("https://apps.apple.com/app/id123456789")
+    openURL("https://apps.apple.com/app/id123456789")
   }
 
   const handleContactSupport = () => {
-    Linking.openURL("mailto:support@productivitydawn.com")
+    openURL("mailto:support@productivitydawn.com")
   }
 
   const handlePrivacyPolicy = () => {
-    Linking.openURL("https://productivitydawn.com/privacy")
+    openURL("https://productivitydawn.com/privacy")
   }
 
   const handleTermsOfService = () => {
-    Linking.openURL("https://productivitydawn.com/terms")
+    openURL("https://productivitydawn.com/terms")
   }
 
   // Handle logout

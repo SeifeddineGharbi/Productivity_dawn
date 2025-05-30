@@ -1,6 +1,13 @@
 import type React from "react"
-import { View, Text } from "react-native"
-import type { WeeklyStats } from "../types"
+import { View, Text } from "../../utils/react-native-web"
+
+interface WeeklyStats {
+  completedDays: number
+  totalDays: number
+  averageScore: number
+  totalTasks: number
+  completedTasks: number
+}
 
 interface WeeklyOverviewProps {
   stats: WeeklyStats
@@ -8,75 +15,29 @@ interface WeeklyOverviewProps {
 }
 
 export const WeeklyOverview: React.FC<WeeklyOverviewProps> = ({ stats, motivationalInsight }) => {
-  const getTrendIcon = (trend: string) => {
-    switch (trend) {
-      case "up":
-        return "📈"
-      case "down":
-        return "📉"
-      default:
-        return "➡️"
-    }
-  }
-
-  const getTrendColor = (trend: string) => {
-    switch (trend) {
-      case "up":
-        return "text-green-600"
-      case "down":
-        return "text-red-600"
-      default:
-        return "text-gray-600"
-    }
-  }
-
   return (
-    <View className="bg-white rounded-2xl p-6 mx-4 mb-4 shadow-md">
-      <Text className="text-xl font-semibold mb-4 text-gray-900">Weekly Overview</Text>
+    <View className="mx-4 my-4 p-6 bg-white rounded-xl shadow-sm">
+      <Text className="text-xl font-bold text-gray-900 mb-4">Weekly Overview</Text>
 
-      {/* Main Stats */}
-      <View className="flex-row justify-between mb-6">
-        <View className="items-center flex-1">
-          <Text className="text-3xl font-bold text-blue-600">{stats.completionPercentage}%</Text>
-          <Text className="text-sm text-gray-600 text-center">Week Complete</Text>
-          {stats.trendPercentage > 0 && (
-            <View className="flex-row items-center mt-1">
-              <Text className={`text-xs ${getTrendColor(stats.trend)}`}>
-                {getTrendIcon(stats.trend)} {stats.trendPercentage}%
-              </Text>
-            </View>
-          )}
+      <View className="flex-row justify-between mb-4">
+        <View className="items-center">
+          <Text className="text-2xl font-bold text-blue-600">{stats.completedDays}</Text>
+          <Text className="text-sm text-gray-600">Days Completed</Text>
         </View>
 
-        <View className="items-center flex-1">
-          <Text className="text-3xl font-bold text-green-600">{stats.perfectDays}</Text>
-          <Text className="text-sm text-gray-600 text-center">Perfect Days</Text>
-          <Text className="text-xs text-gray-500 mt-1">All 4 tasks</Text>
+        <View className="items-center">
+          <Text className="text-2xl font-bold text-green-600">{stats.averageScore}%</Text>
+          <Text className="text-sm text-gray-600">Avg Score</Text>
         </View>
 
-        <View className="items-center flex-1">
-          <Text className="text-3xl font-bold text-purple-600">{stats.averageScore}</Text>
-          <Text className="text-sm text-gray-600 text-center">Avg Score</Text>
-          <Text className="text-xs text-gray-500 mt-1">This week</Text>
+        <View className="items-center">
+          <Text className="text-2xl font-bold text-purple-600">{stats.completedTasks}</Text>
+          <Text className="text-sm text-gray-600">Tasks Done</Text>
         </View>
       </View>
 
-      {/* Progress Bar */}
-      <View className="mb-4">
-        <View className="flex-row justify-between mb-2">
-          <Text className="text-sm font-medium text-gray-700">Daily Completion</Text>
-          <Text className="text-sm text-gray-600">
-            {stats.completedDays}/{stats.totalDays} days
-          </Text>
-        </View>
-        <View className="h-2 bg-gray-200 rounded-full overflow-hidden">
-          <View className="h-full bg-blue-500 rounded-full" style={{ width: `${stats.completionPercentage}%` }} />
-        </View>
-      </View>
-
-      {/* Motivational Insight */}
-      <View className="bg-blue-50 rounded-xl p-4">
-        <Text className="text-sm text-blue-800 leading-relaxed">{motivationalInsight}</Text>
+      <View className="bg-blue-50 rounded-lg p-3">
+        <Text className="text-blue-800 text-sm">{motivationalInsight}</Text>
       </View>
     </View>
   )

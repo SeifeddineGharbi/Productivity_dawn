@@ -1,64 +1,53 @@
 import type React from "react"
-import { View, Text, TouchableOpacity } from "react-native"
-import type { ProfileCardProps } from "../types"
-import { settingsService } from "../settings-service"
+import { View, Text, TouchableOpacity } from "../../utils/react-native-web"
+
+interface UserProfile {
+  name: string
+  email: string
+  wakeTime: { hour: number; minute: number }
+  joinDate: string
+}
+
+interface ProfileCardProps {
+  profile: UserProfile
+  onEdit: () => void
+}
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onEdit }) => {
-  const formatGender = (gender: string): string => {
-    switch (gender) {
-      case "male":
-        return "Male"
-      case "female":
-        return "Female"
-      case "non_binary":
-        return "Non-binary"
-      default:
-        return "Prefer not to say"
-    }
+  const formatWakeTime = (time: { hour: number; minute: number }) => {
+    const hour = time.hour.toString().padStart(2, "0")
+    const minute = time.minute.toString().padStart(2, "0")
+    return `${hour}:${minute}`
   }
 
   return (
-    <View className="bg-white rounded-2xl p-6 mx-4 mb-4 shadow-md">
-      <View className="flex-row justify-between items-center mb-4">
-        <Text className="text-xl font-semibold text-gray-900">Profile</Text>
-        <TouchableOpacity
-          className="py-2 px-4 rounded-lg bg-blue-50 active:bg-blue-100"
-          onPress={onEdit}
-          activeOpacity={0.7}
-        >
+    <View className="mx-4 my-4 p-6 bg-white rounded-xl shadow-sm">
+      <View className="flex-row items-center justify-between mb-4">
+        <Text className="text-xl font-bold text-gray-900">Profile</Text>
+        <TouchableOpacity onPress={onEdit} className="px-3 py-1 bg-blue-50 rounded-lg">
           <Text className="text-blue-600 font-medium">Edit</Text>
         </TouchableOpacity>
       </View>
 
-      <View className="space-y-4">
-        {/* Name */}
-        <View className="flex-row justify-between">
-          <Text className="text-gray-600">Name</Text>
-          <Text className="text-gray-900 font-medium">{profile.name}</Text>
+      <View className="space-y-3">
+        <View>
+          <Text className="text-sm text-gray-600">Name</Text>
+          <Text className="text-base text-gray-900">{profile.name}</Text>
         </View>
 
-        {/* Email */}
-        <View className="flex-row justify-between">
-          <Text className="text-gray-600">Email</Text>
-          <Text className="text-gray-900 font-medium">{profile.email}</Text>
+        <View>
+          <Text className="text-sm text-gray-600">Email</Text>
+          <Text className="text-base text-gray-900">{profile.email}</Text>
         </View>
 
-        {/* Gender */}
-        <View className="flex-row justify-between">
-          <Text className="text-gray-600">Gender</Text>
-          <Text className="text-gray-900 font-medium">{formatGender(profile.gender)}</Text>
+        <View>
+          <Text className="text-sm text-gray-600">Wake Time</Text>
+          <Text className="text-base text-gray-900">{formatWakeTime(profile.wakeTime)}</Text>
         </View>
 
-        {/* Wake Time */}
-        <View className="flex-row justify-between">
-          <Text className="text-gray-600">Wake Time</Text>
-          <Text className="text-gray-900 font-medium">{settingsService.formatTime(profile.wakeTime)}</Text>
-        </View>
-
-        {/* Work Start Time */}
-        <View className="flex-row justify-between">
-          <Text className="text-gray-600">Work Start Time</Text>
-          <Text className="text-gray-900 font-medium">{settingsService.formatTime(profile.workStartTime)}</Text>
+        <View>
+          <Text className="text-sm text-gray-600">Member Since</Text>
+          <Text className="text-base text-gray-900">{new Date(profile.joinDate).toLocaleDateString()}</Text>
         </View>
       </View>
     </View>

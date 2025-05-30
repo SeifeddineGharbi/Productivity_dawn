@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { View, Text, TouchableOpacity, SafeAreaView, ActivityIndicator } from "../utils/react-native-web"
+import { View, Text, TouchableOpacity, ActivityIndicator, SafeAreaView } from "../utils/react-native-web"
 
 interface EmailVerificationScreenProps {
   email: string

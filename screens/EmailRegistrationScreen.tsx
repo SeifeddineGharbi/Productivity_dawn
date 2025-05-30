@@ -1,16 +1,9 @@
 "use client"
+import { View, Text, TouchableOpacity, ScrollView, TextInput, ActivityIndicator } from "../utils/react-native-web"
 
-import type React from "react"
+import type { FC } from "react"
 import { useState } from "react"
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-  SafeAreaView,
-  ActivityIndicator,
-} from "../utils/react-native-web"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 interface EmailRegistrationScreenProps {
   onSubmit: (data: { email: string; password: string; name: string }) => Promise<void>
@@ -20,7 +13,7 @@ interface EmailRegistrationScreenProps {
   error?: string
 }
 
-export const EmailRegistrationScreen: React.FC<EmailRegistrationScreenProps> = ({
+export const EmailRegistrationScreen: FC<EmailRegistrationScreenProps> = ({
   onSubmit,
   onSignIn,
   onBack,

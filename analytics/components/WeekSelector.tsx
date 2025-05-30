@@ -1,7 +1,11 @@
 import type React from "react"
-import { View, Text, TouchableOpacity } from "react-native"
-import type { WeekSelectorProps } from "../types"
-import { analyticsService } from "../analytics-service"
+import { View, Text, TouchableOpacity } from "../../utils/react-native-web"
+
+interface WeekSelectorProps {
+  currentWeek: Date
+  onWeekChange: (date: Date) => void
+  canGoNext: boolean
+}
 
 export const WeekSelector: React.FC<WeekSelectorProps> = ({ currentWeek, onWeekChange, canGoNext }) => {
   const goToPreviousWeek = () => {
@@ -18,26 +22,26 @@ export const WeekSelector: React.FC<WeekSelectorProps> = ({ currentWeek, onWeekC
     }
   }
 
-  const weekRange = analyticsService.formatWeekRange(currentWeek)
+  const formatWeek = (date: Date) => {
+    const endDate = new Date(date)
+    endDate.setDate(endDate.getDate() + 6)
+    return `${date.toLocaleDateString("en", { month: "short", day: "numeric" })} - ${endDate.toLocaleDateString("en", { month: "short", day: "numeric" })}`
+  }
 
   return (
-    <View className="flex-row items-center justify-between px-6 py-4">
-      <TouchableOpacity className="p-2 rounded-lg active:bg-gray-100" onPress={goToPreviousWeek} activeOpacity={0.7}>
-        <Text className="text-blue-600 font-semibold text-lg">←</Text>
+    <View className="flex-row items-center justify-between px-4 py-3 bg-white border-b border-gray-200">
+      <TouchableOpacity onPress={goToPreviousWeek} className="p-2">
+        <Text className="text-blue-600 text-lg">←</Text>
       </TouchableOpacity>
 
-      <View className="items-center">
-        <Text className="text-lg font-semibold text-gray-900">{weekRange}</Text>
-        <Text className="text-sm text-gray-500">Weekly Progress</Text>
-      </View>
+      <Text className="text-lg font-semibold text-gray-900">{formatWeek(currentWeek)}</Text>
 
       <TouchableOpacity
-        className={`p-2 rounded-lg ${canGoNext ? "active:bg-gray-100" : "opacity-30"}`}
         onPress={goToNextWeek}
+        className={`p-2 ${!canGoNext ? "opacity-50" : ""}`}
         disabled={!canGoNext}
-        activeOpacity={canGoNext ? 0.7 : 1}
       >
-        <Text className={`font-semibold text-lg ${canGoNext ? "text-blue-600" : "text-gray-400"}`}>→</Text>
+        <Text className="text-blue-600 text-lg">→</Text>
       </TouchableOpacity>
     </View>
   )

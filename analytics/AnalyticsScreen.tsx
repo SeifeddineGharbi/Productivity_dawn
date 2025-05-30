@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useEffect, useCallback } from "react"
-import { ScrollView, SafeAreaView, ActivityIndicator, Alert } from "react-native"
+import { ScrollView, SafeAreaView, ActivityIndicator, Alert, Text } from "../utils/react-native-web"
 import type { AnalyticsScreenProps, AnalyticsData, DayAnalytics } from "./types"
 import { analyticsService } from "./analytics-service"
 import { WeekSelector } from "./components/WeekSelector"

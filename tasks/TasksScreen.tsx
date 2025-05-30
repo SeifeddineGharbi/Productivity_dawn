@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
   Alert,
   Animated,
-} from "react-native"
+} from "../utils/react-native-web"
 import type { TasksScreenProps, TaskData, UserProgress, TaskItem, WeekDay } from "./types"
 import { tasksFirebaseService } from "./firebase-service"
 import { notificationService } from "./notification-service"
