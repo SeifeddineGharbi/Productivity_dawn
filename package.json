@@ -41,6 +41,7 @@
     "@react-native-community/datetimepicker": "latest",
     "@react-native-community/netinfo": "latest",
     "@react-native-community/push-notification-ios": "latest",
+    "@react-native-community/slider": "latest",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
