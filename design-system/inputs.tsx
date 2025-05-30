@@ -2,18 +2,27 @@
 
 import type React from "react"
 import { useState } from "react"
-import { View, TextInput, type TextInputProps, TouchableOpacity } from "react-native"
-import { Label, BodySmall } from "./typography"
+import { View, TextInput, TouchableOpacity } from "../utils/react-native-web"
+import { Label, BodySmall, Body } from "./typography"
 
-interface InputProps extends TextInputProps {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string
   error?: string
   hint?: string
   required?: boolean
   className?: string
+  onChangeText?: (text: string) => void
 }
 
-export const Input: React.FC<InputProps> = ({ label, error, hint, required = false, className = "", ...props }) => {
+export const Input: React.FC<InputProps> = ({
+  label,
+  error,
+  hint,
+  required = false,
+  className = "",
+  onChangeText,
+  ...props
+}) => {
   const [isFocused, setIsFocused] = useState(false)
 
   return (
@@ -33,6 +42,7 @@ export const Input: React.FC<InputProps> = ({ label, error, hint, required = fal
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholderTextColor="#9CA3AF"
+        onChangeText={onChangeText}
         {...props}
       />
 
@@ -111,6 +121,11 @@ export const TimePickerInput: React.FC<{
     return `${displayHour}:${displayMinute} ${period}`
   }
 
+  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const [hours, minutes] = e.target.value.split(":").map(Number)
+    onChange({ hour: hours, minute: minutes })
+  }
+
   return (
     <View className="mb-4">
       <Label className="mb-2">{label}</Label>
@@ -128,7 +143,23 @@ export const TimePickerInput: React.FC<{
 
       {error && <BodySmall className="text-red-500 mt-1">{error}</BodySmall>}
 
-      {/* Note: Actual time picker implementation would use @react-native-community/datetimepicker */}
+      {showPicker && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded-lg">
+            <input
+              type="time"
+              value={`${value.hour.toString().padStart(2, "0")}:${value.minute.toString().padStart(2, "0")}`}
+              onChange={handleTimeChange}
+              className="mb-4"
+            />
+            <div className="flex justify-end">
+              <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => setShowPicker(false)}>
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </View>
   )
 }
