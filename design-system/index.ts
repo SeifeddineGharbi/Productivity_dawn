@@ -4,20 +4,15 @@ export * from "./typography"
 export * from "./buttons"
 export * from "./inputs"
 export * from "./cards"
-export * from "./loading-states"
-export * from "./error-states"
-export * from "./progress-indicators"
 export * from "./layout"
-export * from "./notifications"
-export * from "./firebase-components"
-export * from "./revenuecat-components"
+export * from "./progress-indicators"
 
 // Utility functions
 export const cn = (...classes: (string | undefined | null | false)[]): string => {
   return classes.filter(Boolean).join(" ")
 }
 
-// Theme configuration for NativeWind
+// Theme configuration for Tailwind
 export const theme = {
   extend: {
     colors: {

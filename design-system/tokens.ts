@@ -1,119 +1,65 @@
-// Design Tokens - Core values for the design system
+// Design tokens for the app
 export const designTokens = {
-  // Color Palette (iOS-inspired)
   colors: {
     primary: {
       50: "#eff6ff",
-      500: "#007AFF", // iOS Blue
+      500: "#007AFF",
       600: "#0066CC",
       700: "#0052A3",
     },
-    success: "#34C759", // iOS Green
-    warning: "#FF9500", // iOS Orange
-    error: "#FF3B30", // iOS Red
-    background: "#F8F9FA", // Light Gray
-
-    // Task-specific colors
+    success: "#34C759",
+    warning: "#FF9500",
+    error: "#FF3B30",
+    background: "#F8F9FA",
     task: {
-      water: "#007AFF", // Blue - represents hydration
-      noSocial: "#FF3B30", // Red - represents restriction
-      sunlight: "#FFCC00", // Yellow - represents sunshine
-      elephant: "#34C759", // Green - represents growth
+      water: "#007AFF",
+      noSocial: "#FF3B30",
+      sunlight: "#FFCC00",
+      elephant: "#34C759",
     },
-
-    // Grayscale
-    gray: {
-      50: "#F9FAFB",
-      100: "#F3F4F6",
-      200: "#E5E7EB",
-      300: "#D1D5DB",
-      400: "#9CA3AF",
-      500: "#6B7280",
-      600: "#4B5563",
-      700: "#374151",
-      800: "#1F2937",
-      900: "#111827",
-    },
-
-    white: "#FFFFFF",
-    black: "#000000",
   },
-
-  // Spacing (Tailwind standard)
   spacing: {
-    xs: 4, // p-1
-    sm: 8, // p-2
-    md: 16, // p-4
-    lg: 24, // p-6
-    xl: 32, // p-8
-    "2xl": 48, // p-12
+    xs: "0.25rem", // 4px
+    sm: "0.5rem", // 8px
+    md: "1rem", // 16px
+    lg: "1.5rem", // 24px
+    xl: "2rem", // 32px
+    xxl: "3rem", // 48px
   },
-
-  // Border Radius
   borderRadius: {
-    sm: 8, // rounded-lg
-    md: 12, // rounded-xl
-    lg: 16, // rounded-2xl
-    xl: 20, // rounded-3xl
-    full: 9999, // rounded-full
+    sm: "0.25rem", // 4px
+    md: "0.5rem", // 8px
+    lg: "0.75rem", // 12px
+    xl: "1rem", // 16px
+    xxl: "1.5rem", // 24px
+    full: "9999px",
   },
-
-  // Typography Scale
-  fontSize: {
-    xs: 12, // text-xs
-    sm: 14, // text-sm
-    base: 16, // text-base
-    lg: 18, // text-lg
-    xl: 20, // text-xl
-    "2xl": 24, // text-2xl
-    "3xl": 28, // text-3xl
-    "4xl": 32, // text-4xl
+  fontSizes: {
+    xs: "0.75rem", // 12px
+    sm: "0.875rem", // 14px
+    md: "1rem", // 16px
+    lg: "1.125rem", // 18px
+    xl: "1.25rem", // 20px
+    xxl: "1.5rem", // 24px
+    xxxl: "2rem", // 32px
   },
-
-  // Font Weights
-  fontWeight: {
+  fontWeights: {
     normal: "400",
     medium: "500",
     semibold: "600",
     bold: "700",
   },
-
-  // Shadows (iOS-style)
   shadows: {
-    sm: {
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.05,
-      shadowRadius: 2,
-      elevation: 1,
-    },
-    md: {
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-      elevation: 3,
-    },
-    lg: {
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.15,
-      shadowRadius: 8,
-      elevation: 5,
-    },
+    sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+    md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    lg: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   },
-} as const
+}
 
-// Animation constants
-export const animations = {
-  duration: {
-    fast: 200,
-    normal: 300,
-    slow: 500,
-  },
-  easing: {
-    easeInOut: "ease-in-out",
-    easeOut: "ease-out",
-    spring: "spring",
-  },
-} as const
+// Export individual token categories for easier imports
+export const colors = designTokens.colors
+export const spacing = designTokens.spacing
+export const borderRadius = designTokens.borderRadius
+export const fontSizes = designTokens.fontSizes
+export const fontWeights = designTokens.fontWeights
+export const shadows = designTokens.shadows

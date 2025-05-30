@@ -1,8 +1,8 @@
 import type React from "react"
-import { Text, type TextProps } from "react-native"
+import { Text } from "../utils/react-native-web"
 
 // Typography Components with NativeWind classes
-interface TypographyProps extends TextProps {
+interface TypographyProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactNode
   className?: string
 }

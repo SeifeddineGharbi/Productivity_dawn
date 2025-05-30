@@ -1,14 +1,15 @@
 import type React from "react"
-import { TouchableOpacity, type TouchableOpacityProps, ActivityIndicator, View, Text } from "react-native"
+import { TouchableOpacity, View, ActivityIndicator } from "../utils/react-native-web"
 import { Body } from "./typography"
 
-interface ButtonProps extends TouchableOpacityProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   variant?: "primary" | "secondary" | "ghost" | "danger"
   size?: "small" | "medium" | "large"
   loading?: boolean
   fullWidth?: boolean
   className?: string
+  onPress?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const getButtonClasses = (variant: string, size: string, fullWidth: boolean, disabled: boolean) => {
@@ -55,6 +56,7 @@ export const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   disabled = false,
   className = "",
+  onPress,
   ...props
 }) => {
   const isDisabled = disabled || loading
@@ -63,6 +65,7 @@ export const Button: React.FC<ButtonProps> = ({
     <TouchableOpacity
       className={`${getButtonClasses(variant, size, fullWidth, isDisabled)} ${className}`}
       disabled={isDisabled}
+      onPress={onPress}
       {...props}
     >
       {loading ? (
@@ -102,7 +105,7 @@ export const TaskButton: React.FC<{
       }`}
       style={{ backgroundColor: completed ? taskColor : "transparent" }}
     >
-      {completed && <Text className="text-white text-xs font-bold">✓</Text>}
+      {completed && <Body className="text-white text-xs font-bold">✓</Body>}
     </View>
     <Body className="flex-1">{children}</Body>
   </TouchableOpacity>
