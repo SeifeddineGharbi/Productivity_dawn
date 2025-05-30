@@ -1,7 +1,7 @@
 "use client"
 
-import  from "../design-system/firebase-components"
+import { PaywallScreenExample } from "../paywall/PaywallScreenExample"
 
 export default function SyntheticV0PageForDeployment() {
-  return < />
+  return <PaywallScreenExample />
 }
