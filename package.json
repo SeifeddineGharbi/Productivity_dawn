@@ -60,7 +60,6 @@
     "react-native": "latest",
     "react-native-purchases": "latest",
     "react-native-push-notification": "latest",
-    "react-native-safe-area-context": "latest",
     "react-native-windows": "latest",
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.0",

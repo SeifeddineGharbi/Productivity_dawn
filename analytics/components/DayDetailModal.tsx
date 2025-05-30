@@ -4,9 +4,9 @@ import { View, Text, TouchableOpacity, Modal } from "../../utils/react-native-we
 interface DayAnalytics {
   date: string
   dayName: string
+  isToday: boolean
+  tasks: any
   score: number
-  tasksCompleted: number
-  totalTasks: number
 }
 
 interface DayDetailModalProps {
@@ -20,31 +20,28 @@ export const DayDetailModal: React.FC<DayDetailModalProps> = ({ day, isVisible, 
 
   return (
     <Modal visible={isVisible} transparent animationType="fade" onRequestClose={onClose}>
-      <View className="flex-1 bg-black/50 items-center justify-center p-4">
-        <View className="bg-white rounded-xl p-6 w-full max-w-sm">
+      <View className="flex-1 bg-black bg-opacity-50 items-center justify-center p-4">
+        <View className="bg-white rounded-2xl p-6 w-full max-w-sm">
           <View className="flex-row items-center justify-between mb-4">
-            <Text className="text-xl font-bold text-gray-900">{day.dayName}</Text>
+            <Text className="text-lg font-bold text-gray-900">{day.dayName}</Text>
             <TouchableOpacity onPress={onClose}>
               <Text className="text-gray-500 text-xl">×</Text>
             </TouchableOpacity>
           </View>
 
-          <Text className="text-gray-600 mb-4">{new Date(day.date).toLocaleDateString()}</Text>
+          <Text className="text-center text-2xl font-bold text-blue-600 mb-4">{day.score}%</Text>
 
-          <View className="items-center mb-4">
-            <Text className="text-3xl font-bold text-blue-600">{day.score}%</Text>
-            <Text className="text-gray-600">Score</Text>
-          </View>
-
-          <View className="flex-row justify-between">
-            <View className="items-center">
-              <Text className="text-lg font-bold text-green-600">{day.tasksCompleted}</Text>
-              <Text className="text-sm text-gray-600">Completed</Text>
-            </View>
-            <View className="items-center">
-              <Text className="text-lg font-bold text-gray-600">{day.totalTasks}</Text>
-              <Text className="text-sm text-gray-600">Total Tasks</Text>
-            </View>
+          <View className="space-y-2">
+            <Text className="text-sm font-medium text-gray-700">Tasks completed:</Text>
+            {day.tasks &&
+              Object.entries(day.tasks).map(([taskId, completed]) => (
+                <View key={taskId} className="flex-row items-center">
+                  <Text className={`mr-2 ${completed ? "text-green-600" : "text-gray-400"}`}>
+                    {completed ? "✓" : "○"}
+                  </Text>
+                  <Text className="text-gray-900 capitalize">{taskId.replace(/([A-Z])/g, " $1").trim()}</Text>
+                </View>
+              ))}
           </View>
         </View>
       </View>

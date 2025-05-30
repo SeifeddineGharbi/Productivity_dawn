@@ -1,42 +1,35 @@
 import type React from "react"
 import { View, Text } from "../../utils/react-native-web"
 
-interface StreakData {
-  currentStreak: number
-  longestStreak: number
-  streakStartDate?: string
-}
-
 interface StreakDisplayProps {
-  streakData: StreakData
+  streakData: {
+    current: number
+    longest: number
+    thisWeek: number
+  }
 }
 
 export const StreakDisplay: React.FC<StreakDisplayProps> = ({ streakData }) => {
   return (
-    <View className="mx-4 my-4 p-6 bg-white rounded-xl shadow-sm">
-      <Text className="text-xl font-bold text-gray-900 mb-4">Streak Stats</Text>
+    <View className="mx-4 mb-6">
+      <View className="bg-white rounded-2xl p-6 shadow-sm">
+        <Text className="text-lg font-semibold text-gray-900 mb-4">Streak Stats</Text>
 
-      <View className="flex-row justify-around">
-        <View className="items-center">
-          <Text className="text-3xl font-bold text-orange-600">{streakData.currentStreak}</Text>
-          <Text className="text-sm text-gray-600">Current Streak</Text>
-          <Text className="text-xs text-gray-500">🔥</Text>
-        </View>
-
-        <View className="items-center">
-          <Text className="text-3xl font-bold text-purple-600">{streakData.longestStreak}</Text>
-          <Text className="text-sm text-gray-600">Best Streak</Text>
-          <Text className="text-xs text-gray-500">🏆</Text>
+        <View className="flex-row justify-between">
+          <View className="items-center">
+            <Text className="text-2xl font-bold text-orange-600">{streakData.current}</Text>
+            <Text className="text-sm text-gray-600">Current</Text>
+          </View>
+          <View className="items-center">
+            <Text className="text-2xl font-bold text-red-600">{streakData.longest}</Text>
+            <Text className="text-sm text-gray-600">Best Ever</Text>
+          </View>
+          <View className="items-center">
+            <Text className="text-2xl font-bold text-blue-600">{streakData.thisWeek}</Text>
+            <Text className="text-sm text-gray-600">This Week</Text>
+          </View>
         </View>
       </View>
-
-      {streakData.streakStartDate && (
-        <View className="mt-4 p-3 bg-orange-50 rounded-lg">
-          <Text className="text-orange-800 text-sm text-center">
-            Streak started: {new Date(streakData.streakStartDate).toLocaleDateString()}
-          </Text>
-        </View>
-      )}
     </View>
   )
 }

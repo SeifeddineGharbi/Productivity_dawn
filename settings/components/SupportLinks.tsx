@@ -14,24 +14,25 @@ export const SupportLinks: React.FC<SupportLinksProps> = ({
   onPrivacyPolicy,
   onTermsOfService,
 }) => {
-  const LinkItem = ({ title, onPress }: { title: string; onPress: () => void }) => (
-    <TouchableOpacity onPress={onPress} className="py-3 border-b border-gray-100 last:border-b-0">
-      <View className="flex-row items-center justify-between">
-        <Text className="text-base text-gray-900">{title}</Text>
-        <Text className="text-gray-400">→</Text>
-      </View>
-    </TouchableOpacity>
-  )
+  const links = [
+    { title: "Rate App", onPress: onRateApp },
+    { title: "Contact Support", onPress: onContactSupport },
+    { title: "Privacy Policy", onPress: onPrivacyPolicy },
+    { title: "Terms of Service", onPress: onTermsOfService },
+  ]
 
   return (
-    <View className="mx-4 my-4 p-6 bg-white rounded-xl shadow-sm">
-      <Text className="text-xl font-bold text-gray-900 mb-4">Support & Legal</Text>
+    <View className="mx-4 mb-6">
+      <View className="bg-white rounded-2xl p-6 shadow-sm">
+        <Text className="text-lg font-semibold text-gray-900 mb-4">Support</Text>
 
-      <View>
-        <LinkItem title="Rate App" onPress={onRateApp} />
-        <LinkItem title="Contact Support" onPress={onContactSupport} />
-        <LinkItem title="Privacy Policy" onPress={onPrivacyPolicy} />
-        <LinkItem title="Terms of Service" onPress={onTermsOfService} />
+        <View className="space-y-3">
+          {links.map((link, index) => (
+            <TouchableOpacity key={index} onPress={link.onPress} className="py-2">
+              <Text className="text-blue-600 font-medium">{link.title}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
     </View>
   )

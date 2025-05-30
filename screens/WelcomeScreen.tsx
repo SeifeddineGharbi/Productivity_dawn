@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useRef } from "react"
 import { View, Text, TouchableOpacity, ScrollView } from "../utils/react-native-web"
 
 interface WelcomeScreenProps {
@@ -17,39 +16,11 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onSignIn,
   loading = false,
 }) => {
-  // Use refs for animation
-  const fadeAnim = useRef<HTMLDivElement>(null);
-  const slideAnim = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Apply animations on mount
-    if (fadeAnim.current) {
-      fadeAnim.current.style.opacity = "0";
-      setTimeout(() => {
-        if (fadeAnim.current) fadeAnim.current.style.opacity = "1";
-      }, 100);
-    }
-
-    if (slideAnim.current) {
-      slideAnim.current.style.transform = "translateY(50px)";
-      slideAnim.current.style.opacity = "0";
-      setTimeout(() => {
-        if (slideAnim.current) {
-          slideAnim.current.style.transform = "translateY(0)";
-          slideAnim.current.style.opacity = "1";
-        }
-      }, 100);
-    }
-  }, []);
-
   return (
     <ScrollView className="flex-1 bg-gray-50" showsVerticalScrollIndicator={false}>
       <View className="flex-1 justify-center px-6 py-8 min-h-screen">
         {/* Hero Animation Area */}
-        <View
-          ref={fadeAnim}
-          className="items-center mb-12 transition-opacity duration-800"
-        >
+        <View className="items-center mb-12">
           {/* Hero Image Placeholder */}
           <View className="w-32 h-32 bg-blue-100 rounded-full items-center justify-center mb-8">
             <Text className="text-6xl">🌅</Text>
@@ -63,10 +34,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         </View>
 
         {/* Hero Content */}
-        <View
-          ref={slideAnim}
-          className="mb-12 transition-all duration-800"
-        >
+        <View className="mb-12">
           <Text className="text-3xl font-bold text-center text-gray-900 mb-4 leading-tight">
             CONQUER your day with the <Text className="text-blue-600">simplest, science-backed</Text> morning routine
           </Text>
@@ -98,7 +66,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <TouchableOpacity
             className={`
               bg-blue-500 rounded-xl py-4 px-6 flex-row items-center justify-center
-              ${loading ? "opacity-50" : "active:bg-blue-600"}
+              ${loading ? "opacity-50" : "hover:bg-blue-600"}
               shadow-sm
             `}
             onPress={onGoogleSignIn}
@@ -114,10 +82,45 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <TouchableOpacity
             className={`
               bg-white border border-gray-300 rounded-xl py-4 px-6 flex-row items-center justify-center
-              ${loading ? "opacity-50" : "active:bg-gray-50"}
+              ${loading ? "opacity-50" : "hover:bg-gray-50"}
               shadow-sm
             `}
             onPress={onEmailSignUp}
             disabled={loading}
           >
-            <View className="w-5 h-5 mr-3 \
+            <View className="w-5 h-5 mr-3 items-center justify-center">
+              <Text className="text-gray-600 text-sm">✉️</Text>
+            </View>
+            <Text className="text-gray-900 font-semibold text-center text-base">Continue with Email</Text>
+          </TouchableOpacity>
+
+          {/* Divider */}
+          <View className="flex-row items-center my-6">
+            <View className="flex-1 h-px bg-gray-300" />
+            <Text className="mx-4 text-sm text-gray-500">or</Text>
+            <View className="flex-1 h-px bg-gray-300" />
+          </View>
+
+          {/* Sign In Link */}
+          <TouchableOpacity
+            className={`py-3 ${loading ? "opacity-50" : "hover:opacity-70"}`}
+            onPress={onSignIn}
+            disabled={loading}
+          >
+            <Text className="text-blue-600 font-medium text-center text-base">
+              Already have an account? <Text className="font-semibold">Sign In</Text>
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* Footer */}
+        <View className="mt-8 pt-6 border-t border-gray-200">
+          <Text className="text-xs text-center text-gray-500 leading-relaxed">
+            By continuing, you agree to our <Text className="text-blue-600 underline">Terms of Service</Text> and{" "}
+            <Text className="text-blue-600 underline">Privacy Policy</Text>
+          </Text>
+        </View>
+      </View>
+    </ScrollView>
+  )
+}

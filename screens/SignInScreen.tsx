@@ -1,9 +1,16 @@
 "use client"
-import { View, Text, TouchableOpacity, ScrollView, TextInput, ActivityIndicator } from "../utils/react-native-web"
 
-import type { FC } from "react"
+import type React from "react"
 import { useState } from "react"
-import { SafeAreaView } from "react-native-safe-area-context"
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  TextInput,
+  SafeAreaView,
+  ActivityIndicator,
+} from "../utils/react-native-web"
 
 interface SignInScreenProps {
   onSubmit: (data: { email: string; password: string; rememberMe: boolean }) => Promise<void>
@@ -15,7 +22,7 @@ interface SignInScreenProps {
   error?: string
 }
 
-export const SignInScreen: FC<SignInScreenProps> = ({
+export const SignInScreen: React.FC<SignInScreenProps> = ({
   onSubmit,
   onSignUp,
   onForgotPassword,

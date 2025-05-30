@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "../../utils/react-native-web"
 
 interface WeekSelectorProps {
   currentWeek: Date
-  onWeekChange: (date: Date) => void
+  onWeekChange: (week: Date) => void
   canGoNext: boolean
 }
 

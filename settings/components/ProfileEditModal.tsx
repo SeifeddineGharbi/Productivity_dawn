@@ -8,7 +8,6 @@ interface UserProfile {
   name: string
   email: string
   wakeTime: { hour: number; minute: number }
-  joinDate: string
 }
 
 interface ProfileEditModalProps {
@@ -38,10 +37,10 @@ export const ProfileEditModal: React.FC<ProfileEditModalProps> = ({ profile, isV
 
   return (
     <Modal visible={isVisible} transparent animationType="slide" onRequestClose={onClose}>
-      <View className="flex-1 bg-black/50 items-center justify-center p-4">
-        <View className="bg-white rounded-xl p-6 w-full max-w-sm">
+      <View className="flex-1 bg-black bg-opacity-50 items-center justify-center p-4">
+        <View className="bg-white rounded-2xl p-6 w-full max-w-sm">
           <View className="flex-row items-center justify-between mb-6">
-            <Text className="text-xl font-bold text-gray-900">Edit Profile</Text>
+            <Text className="text-lg font-bold text-gray-900">Edit Profile</Text>
             <TouchableOpacity onPress={onClose}>
               <Text className="text-gray-500 text-xl">×</Text>
             </TouchableOpacity>
@@ -51,50 +50,29 @@ export const ProfileEditModal: React.FC<ProfileEditModalProps> = ({ profile, isV
             <View>
               <Text className="text-sm font-medium text-gray-700 mb-2">Name</Text>
               <TextInput
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white"
                 value={editedProfile.name}
                 onChangeText={(text) => setEditedProfile({ ...editedProfile, name: text })}
               />
             </View>
 
             <View>
-              <Text className="text-sm font-medium text-gray-700 mb-2">Wake Time</Text>
-              <View className="flex-row space-x-2">
-                <TextInput
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-center"
-                  value={editedProfile.wakeTime.hour.toString().padStart(2, "0")}
-                  onChangeText={(text) => {
-                    const hour = Number.parseInt(text) || 0
-                    setEditedProfile({
-                      ...editedProfile,
-                      wakeTime: { ...editedProfile.wakeTime, hour: Math.max(0, Math.min(23, hour)) },
-                    })
-                  }}
-                  placeholder="HH"
-                />
-                <Text className="py-2">:</Text>
-                <TextInput
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-center"
-                  value={editedProfile.wakeTime.minute.toString().padStart(2, "0")}
-                  onChangeText={(text) => {
-                    const minute = Number.parseInt(text) || 0
-                    setEditedProfile({
-                      ...editedProfile,
-                      wakeTime: { ...editedProfile.wakeTime, minute: Math.max(0, Math.min(59, minute)) },
-                    })
-                  }}
-                  placeholder="MM"
-                />
-              </View>
+              <Text className="text-sm font-medium text-gray-700 mb-2">Email</Text>
+              <TextInput
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-white"
+                value={editedProfile.email}
+                onChangeText={(text) => setEditedProfile({ ...editedProfile, email: text })}
+                autoCapitalize="none"
+              />
             </View>
           </View>
 
           <View className="flex-row space-x-3">
-            <TouchableOpacity onPress={onClose} className="flex-1 py-3 border border-gray-300 rounded-lg">
-              <Text className="text-gray-700 font-medium text-center">Cancel</Text>
+            <TouchableOpacity onPress={onClose} className="flex-1 border border-gray-300 rounded-xl py-3">
+              <Text className="text-gray-900 font-medium text-center">Cancel</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleSave} className="flex-1 py-3 bg-blue-500 rounded-lg" disabled={isSaving}>
-              <Text className="text-white font-medium text-center">{isSaving ? "Saving..." : "Save"}</Text>
+            <TouchableOpacity onPress={handleSave} className="flex-1 bg-blue-500 rounded-xl py-3" disabled={isSaving}>
+              <Text className="text-white font-semibold text-center">{isSaving ? "Saving..." : "Save"}</Text>
             </TouchableOpacity>
           </View>
         </View>

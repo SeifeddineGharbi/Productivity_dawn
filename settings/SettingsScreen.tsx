@@ -11,18 +11,20 @@ import { SubscriptionCard } from "./components/SubscriptionCard"
 import { SupportLinks } from "./components/SupportLinks"
 import { ProfileEditModal } from "./components/ProfileEditModal"
 
+const Linking = {
+  openURL: (url: string) => {
+    if (typeof window !== "undefined") {
+      window.open(url, "_blank")
+    }
+  },
+}
+
 export const SettingsScreen: React.FC<SettingsScreenProps> = ({ userId, onLogout }) => {
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [notificationSettings, setNotificationSettings] = useState<NotificationSettings | null>(null)
   const [subscription, setSubscription] = useState<SubscriptionInfo | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [showProfileEdit, setShowProfileEdit] = useState(false)
-
-  const openURL = (url: string) => {
-    if (typeof window !== "undefined") {
-      window.open(url, "_blank")
-    }
-  }
 
   // Load user data
   const loadUserData = useCallback(async () => {
@@ -89,7 +91,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ userId, onLogout
   // Handle subscription management
   const handleManageSubscription = () => {
     // In a real app, this would open the subscription management page
-    openURL("https://apps.apple.com/account/subscriptions")
+    Linking.openURL("https://apps.apple.com/account/subscriptions")
   }
 
   // Handle subscription upgrade
@@ -106,19 +108,19 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({ userId, onLogout
 
   // Handle support links
   const handleRateApp = () => {
-    openURL("https://apps.apple.com/app/id123456789")
+    Linking.openURL("https://apps.apple.com/app/id123456789")
   }
 
   const handleContactSupport = () => {
-    openURL("mailto:support@productivitydawn.com")
+    Linking.openURL("mailto:support@productivitydawn.com")
   }
 
   const handlePrivacyPolicy = () => {
-    openURL("https://productivitydawn.com/privacy")
+    Linking.openURL("https://productivitydawn.com/privacy")
   }
 
   const handleTermsOfService = () => {
-    openURL("https://productivitydawn.com/terms")
+    Linking.openURL("https://productivitydawn.com/terms")
   }
 
   // Handle logout
