@@ -3,38 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --primary-50: #eff6ff;
-  --primary-500: #007aff;
-  --primary-600: #0066cc;
-  --primary-700: #0052a3;
-  --success: #34c759;
-  --warning: #ff9500;
-  --error: #ff3b30;
-  --background: #f8f9fa;
-  --task-water: #007aff;
-  --task-noSocial: #ff3b30;
-  --task-sunlight: #ffcc00;
-  --task-elephant: #34c759;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
-@layer base {
-  body {
-    @apply bg-gray-100 text-gray-900 font-sf-text;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
-@layer components {
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-  }
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
 
-  .animate-slide-up {
-    animation: slideUp 0.3s ease-in-out;
-  }
+/* Mobile-specific styles */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
 
-  .animate-scale {
-    animation: scale 0.3s ease-in-out;
-  }
+input,
+textarea {
+  user-select: auto;
+}
+
+/* Animation classes for Modal */
+.animate-fade {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide {
+  animation: slideUp 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -48,89 +53,40 @@
 
 @keyframes slideUp {
   from {
-    transform: translateY(20px);
-    opacity: 0;
+    transform: translateY(100%);
   }
   to {
     transform: translateY(0);
-    opacity: 1;
   }
 }
 
-@keyframes scale {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* Safe area insets */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
 }
 
-/* Mobile viewport simulation */
-.mobile-viewport {
-  width: 375px;
-  height: 812px;
-  overflow: hidden;
-  position: relative;
-  margin: 0 auto;
-  border: 10px solid #333;
-  border-radius: 40px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+.safe-top {
+  padding-top: var(--sat);
 }
 
-/* Utility classes for React Native-like behavior */
-.flex-1 {
-  flex: 1;
+.safe-right {
+  padding-right: var(--sar);
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
+.safe-bottom {
+  padding-bottom: var(--sab);
 }
 
-.flex-col {
-  display: flex;
-  flex-direction: column;
+.safe-left {
+  padding-left: var(--sal);
 }
 
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.space-x-1 > * + * {
-  margin-left: 0.25rem;
-}
-
-.space-x-2 > * + * {
-  margin-left: 0.5rem;
-}
-
-.space-x-4 > * + * {
-  margin-left: 1rem;
-}
-
-.space-y-1 > * + * {
-  margin-top: 0.25rem;
-}
-
-.space-y-2 > * + * {
-  margin-top: 0.5rem;
-}
-
-.space-y-4 > * + * {
-  margin-top: 1rem;
+.safe-area {
+  padding-top: var(--sat);
+  padding-right: var(--sar);
+  padding-bottom: var(--sab);
+  padding-left: var(--sal);
 }

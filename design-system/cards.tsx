@@ -1,7 +1,7 @@
 import type React from "react"
-import { View } from "../utils/react-native-web"
+import { View, type ViewProps } from "react-native"
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps extends ViewProps {
   children: React.ReactNode
   variant?: "default" | "elevated" | "outlined"
   padding?: "none" | "small" | "medium" | "large"

@@ -1,9 +1,8 @@
 import type React from "react"
-import { View, ScrollView, SafeAreaView } from "../utils/react-native-web"
-import { H3 } from "./typography"
+import { View, ScrollView, SafeAreaView, type ViewProps } from "react-native"
 
 // Safe Area Container
-export const SafeContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { children: React.ReactNode }> = ({
+export const SafeContainer: React.FC<ViewProps & { children: React.ReactNode }> = ({
   children,
   className = "",
   ...props
@@ -15,7 +14,7 @@ export const SafeContainer: React.FC<React.HTMLAttributes<HTMLDivElement> & { ch
 
 // Screen Container
 export const Screen: React.FC<
-  React.HTMLAttributes<HTMLDivElement> & {
+  ViewProps & {
     children: React.ReactNode
     scrollable?: boolean
     padding?: boolean
@@ -120,3 +119,5 @@ export const Spacer: React.FC<{
 
   return <View className={sizeClasses[size]} />
 }
+
+import { H3 } from "./typography"
