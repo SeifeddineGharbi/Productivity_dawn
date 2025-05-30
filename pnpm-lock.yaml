@@ -92,9 +92,18 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: 1.1.6
         version: 1.1.6(@types/react-dom@19.0.0)(@types/react@19.0.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@react-native-async-storage/async-storage':
+        specifier: latest
+        version: 2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))
       '@react-native-community/datetimepicker':
         specifier: latest
         version: 8.4.1(expo@53.0.9(@babel/core@7.27.3)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0))(react-native-windows@0.78.5(@babel/core@7.27.3)(@babel/preset-env@7.27.2(@babel/core@7.27.3))(@react-native-community/cli-server-api@15.1.3)(@types/react@19.0.0)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)(tslib@2.8.1)(typescript@5.0.2))(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)
+      '@react-native-community/netinfo':
+        specifier: latest
+        version: 11.4.1(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))
+      '@react-native-community/push-notification-ios':
+        specifier: latest
+        version: 1.11.0(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.0.0)
@@ -118,7 +127,7 @@ importers:
         version: 53.0.9(@babel/core@7.27.3)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)
       firebase:
         specifier: latest
-        version: 11.8.1
+        version: 11.8.1(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)))
       input-otp:
         specifier: 1.4.1
         version: 1.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -149,6 +158,9 @@ importers:
       react-native-purchases:
         specifier: latest
         version: 8.10.1(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)
+      react-native-push-notification:
+        specifier: latest
+        version: 8.1.1(@react-native-community/push-notification-ios@1.11.0(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))
       react-native-windows:
         specifier: latest
         version: 0.78.5(@babel/core@7.27.3)(@babel/preset-env@7.27.2(@babel/core@7.27.3))(@react-native-community/cli-server-api@15.1.3)(@types/react@19.0.0)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)(tslib@2.8.1)(typescript@5.0.2)
@@ -2187,6 +2199,11 @@ packages:
   '@radix-ui/rect@1.1.0':
     resolution: {integrity: sha512-A9+lCBZoaMJlVKcRBz2YByCG+Cp2t6nAnMnNba+XiWxnj6r4JUFqfsgwocMBZU9LPtdxC6wB56ySYpc7LQIoJg==}
 
+  '@react-native-async-storage/async-storage@2.1.2':
+    resolution: {integrity: sha512-dvlNq4AlGWC+ehtH12p65+17V0Dx7IecOWl6WanF2ja38O1Dcjjvn7jVzkUHJ5oWkQBlyASurTPlTHgKXyYiow==}
+    peerDependencies:
+      react-native: ^0.0.0-0 || >=0.65 <1.0
+
   '@react-native-community/cli-clean@15.1.3':
     resolution: {integrity: sha512-3s9NGapIkONFoCUN2s77NYI987GPSCdr74rTf0TWyGIDf4vTYgKoWKKR+Ml3VTa1BCj51r4cYuHEKE1pjUSc0w==}
 
@@ -2240,6 +2257,17 @@ packages:
         optional: true
       react-native-windows:
         optional: true
+
+  '@react-native-community/netinfo@11.4.1':
+    resolution: {integrity: sha512-B0BYAkghz3Q2V09BF88RA601XursIEA111tnc2JOaN7axJWmNefmfjZqw/KdSxKZp7CZUuPpjBmz/WCR9uaHYg==}
+    peerDependencies:
+      react-native: '>=0.59'
+
+  '@react-native-community/push-notification-ios@1.11.0':
+    resolution: {integrity: sha512-nfkUs8P2FeydOCR4r7BNmtGxAxI22YuGP6RmqWt6c8EEMUpqvIhNKWkRSFF3pHjkgJk2tpRb9wQhbezsqTyBvA==}
+    peerDependencies:
+      react: '>=16.6.3'
+      react-native: '>=0.58.4'
 
   '@react-native-windows/cli@0.78.2':
     resolution: {integrity: sha512-F5l0P7j1LpsWWkenIa118GSQhBZXLWU2V30E+xePh52Yp2H4WmGnvG41Ie8LiTLXs5BRwmzuGbOIgjYbHhK2pw==}
@@ -3593,6 +3621,10 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
 
+  is-plain-obj@2.1.0:
+    resolution: {integrity: sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==}
+    engines: {node: '>=8'}
+
   is-plain-object@2.0.4:
     resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
     engines: {node: '>=0.10.0'}
@@ -3915,6 +3947,10 @@ packages:
 
   memoize-one@5.2.1:
     resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
+
+  merge-options@3.0.4:
+    resolution: {integrity: sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==}
+    engines: {node: '>=10'}
 
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
@@ -4556,6 +4592,12 @@ packages:
     peerDependencies:
       react: '>= 16.6.3'
       react-native: '*'
+
+  react-native-push-notification@8.1.1:
+    resolution: {integrity: sha512-XpBtG/w+a6WXTxu6l1dNYyTiHnbgnvjoc3KxPTxYkaIABRmvuJZkFxqruyGvfCw7ELAlZEAJO+dthdTabCe1XA==}
+    peerDependencies:
+      '@react-native-community/push-notification-ios': ^1.10.1
+      react-native: '>=0.33'
 
   react-native-windows@0.78.5:
     resolution: {integrity: sha512-ItdDzbifrMxj/6dVkrp2AtzjeAuaqH9cRe92qPXX6BtYfKeL5nw4eKRUXtySMaiyonP3spsWJvgvkC5ktR4Rug==}
@@ -6599,10 +6641,10 @@ snapshots:
       idb: 7.1.1
       tslib: 2.8.1
 
-  '@firebase/auth-compat@0.5.26(@firebase/app-compat@0.4.0)(@firebase/app-types@0.9.3)(@firebase/app@0.13.0)':
+  '@firebase/auth-compat@0.5.26(@firebase/app-compat@0.4.0)(@firebase/app-types@0.9.3)(@firebase/app@0.13.0)(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)))':
     dependencies:
       '@firebase/app-compat': 0.4.0
-      '@firebase/auth': 1.10.6(@firebase/app@0.13.0)
+      '@firebase/auth': 1.10.6(@firebase/app@0.13.0)(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)))
       '@firebase/auth-types': 0.13.0(@firebase/app-types@0.9.3)(@firebase/util@1.12.0)
       '@firebase/component': 0.6.17
       '@firebase/util': 1.12.0
@@ -6619,13 +6661,15 @@ snapshots:
       '@firebase/app-types': 0.9.3
       '@firebase/util': 1.12.0
 
-  '@firebase/auth@1.10.6(@firebase/app@0.13.0)':
+  '@firebase/auth@1.10.6(@firebase/app@0.13.0)(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)))':
     dependencies:
       '@firebase/app': 0.13.0
       '@firebase/component': 0.6.17
       '@firebase/logger': 0.4.4
       '@firebase/util': 1.12.0
       tslib: 2.8.1
+    optionalDependencies:
+      '@react-native-async-storage/async-storage': 2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))
 
   '@firebase/component@0.6.17':
     dependencies:
@@ -7863,6 +7907,11 @@ snapshots:
 
   '@radix-ui/rect@1.1.0': {}
 
+  '@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))':
+    dependencies:
+      merge-options: 3.0.4
+      react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)
+
   '@react-native-community/cli-clean@15.1.3':
     dependencies:
       '@react-native-community/cli-tools': 15.1.3
@@ -8008,6 +8057,16 @@ snapshots:
     optionalDependencies:
       expo: 53.0.9(@babel/core@7.27.3)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)
       react-native-windows: 0.78.5(@babel/core@7.27.3)(@babel/preset-env@7.27.2(@babel/core@7.27.3))(@react-native-community/cli-server-api@15.1.3)(@types/react@19.0.0)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)(tslib@2.8.1)(typescript@5.0.2)
+
+  '@react-native-community/netinfo@11.4.1(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))':
+    dependencies:
+      react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)
+
+  '@react-native-community/push-notification-ios@1.11.0(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      invariant: 2.2.4
+      react: 19.0.0
+      react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)
 
   '@react-native-windows/cli@0.78.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(tslib@2.8.1)':
     dependencies:
@@ -9341,7 +9400,7 @@ snapshots:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
-  firebase@11.8.1:
+  firebase@11.8.1(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))):
     dependencies:
       '@firebase/ai': 1.3.0(@firebase/app-types@0.9.3)(@firebase/app@0.13.0)
       '@firebase/analytics': 0.10.16(@firebase/app@0.13.0)
@@ -9351,8 +9410,8 @@ snapshots:
       '@firebase/app-check-compat': 0.3.25(@firebase/app-compat@0.4.0)(@firebase/app@0.13.0)
       '@firebase/app-compat': 0.4.0
       '@firebase/app-types': 0.9.3
-      '@firebase/auth': 1.10.6(@firebase/app@0.13.0)
-      '@firebase/auth-compat': 0.5.26(@firebase/app-compat@0.4.0)(@firebase/app-types@0.9.3)(@firebase/app@0.13.0)
+      '@firebase/auth': 1.10.6(@firebase/app@0.13.0)(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)))
+      '@firebase/auth-compat': 0.5.26(@firebase/app-compat@0.4.0)(@firebase/app-types@0.9.3)(@firebase/app@0.13.0)(@react-native-async-storage/async-storage@2.1.2(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)))
       '@firebase/data-connect': 0.3.9(@firebase/app@0.13.0)
       '@firebase/database': 1.0.19
       '@firebase/database-compat': 2.0.10
@@ -9607,6 +9666,8 @@ snapshots:
   is-interactive@1.0.0: {}
 
   is-number@7.0.0: {}
+
+  is-plain-obj@2.1.0: {}
 
   is-plain-object@2.0.4:
     dependencies:
@@ -9948,6 +10009,10 @@ snapshots:
       p-is-promise: 2.1.0
 
   memoize-one@5.2.1: {}
+
+  merge-options@3.0.4:
+    dependencies:
+      is-plain-obj: 2.1.0
 
   merge-stream@2.0.0: {}
 
@@ -10773,6 +10838,11 @@ snapshots:
     dependencies:
       '@revenuecat/purchases-typescript-internal': 13.32.0
       react: 19.0.0
+      react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)
+
+  react-native-push-notification@8.1.1(@react-native-community/push-notification-ios@1.11.0(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0))(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)):
+    dependencies:
+      '@react-native-community/push-notification-ios': 1.11.0(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)
       react-native: 0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0)
 
   react-native-windows@0.78.5(@babel/core@7.27.3)(@babel/preset-env@7.27.2(@babel/core@7.27.3))(@react-native-community/cli-server-api@15.1.3)(@types/react@19.0.0)(react-native@0.79.2(@babel/core@7.27.3)(@react-native-community/cli@15.1.3(typescript@5.0.2))(@types/react@19.0.0)(react@19.0.0))(react@19.0.0)(tslib@2.8.1)(typescript@5.0.2):
